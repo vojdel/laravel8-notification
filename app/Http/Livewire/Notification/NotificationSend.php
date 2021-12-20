@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Notification;
 
-use App\Http\Controllers\MailController as AppMailController;
 use App\Models\User;
 use App\Notifications\NotificationTest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
+use App\Http\Controller\MailController;
 
 class NotificationSend extends Component
 {
@@ -29,14 +29,14 @@ class NotificationSend extends Component
         //$sendEmail = auth()->user();
         //dd($sendEmail);
         //dd($this->user);
-        $mail = new AppMailController();
-        $data = [
+        AppMailController
+        Notification::send($sendEmail, new NotificationTest([
             "title" => $this->title,
             "asunto" => $this->subject,
-        ];
-
-        $mail->send($mail, $data);
-
+            "url" => "/dashboard",
+            "name" => $sendEmail->name,
+            "email" => $sendEmail->email
+        ]));
         return redirect('/email');
     }
 
