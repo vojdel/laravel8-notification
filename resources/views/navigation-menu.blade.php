@@ -15,6 +15,9 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('email.index') }}" :active="request()->routeIs('email.index')">
+                        {{ __('Bandeja') }}
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('email.send') }}" :active="request()->routeIs('email.send')">
                         {{ __('Notificación') }}
                     </x-jet-nav-link>

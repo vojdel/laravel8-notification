@@ -6,7 +6,7 @@
       <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <table class="min-w-full divide-y divide-gray-200">
                     <colgroup>
-                        <col width="20px" />
+                        <col width="300px" />
                         <col width="390px" />
                         <col width="200px" />
                         <col width="200px" />
@@ -32,24 +32,24 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            @foreach($messages as $message)
+            @foreach($messages as $key => $message)
             <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="ml-4">
                     <div class="text-sm font-medium text-gray-900">
-                      {{$message->data->name ?? null}}
+                      {{$message->data['name'] ?? null}}
                     </div>
                     <div class="text-sm text-gray-500">
-                    @if($message->data->email ?? null)
-                    {{$message->data->email}}
+                    @if($message->data['email'] ?? null)
+                    {{$message->data['email']}}
                     @endif
                     </div>
                   </div>
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">{{$message->data->title ?? null}}</div>
-                <div class="text-sm text-gray-500">{{$message->data->asunto ?? null}}</div>
+                <div class="text-sm text-gray-900">{{$message->data['title'] ?? null}}</div>
+                <div class="text-sm text-gray-500">{{$message->data['asunto'] ?? null}}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -62,7 +62,7 @@
                 </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">visto</a>
+                <button class="text-indigo-600 hover:text-indigo-900" wire:click="markRead({{$key}})">visto</button>
               </td>
             </tr>
             @endforeach

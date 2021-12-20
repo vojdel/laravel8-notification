@@ -12,11 +12,18 @@ class NotificationIndex extends Component
     public $messages;
 
     public function mount(){
-        $this->messages = Notification::all();
-        foreach($this->messages as $key => $message){
-            $this->messages[$key]->data = json_decode($message->data);
-        }
+        $this->messages = auth()->user()->notifications;
         //dd($this->messages);
+        //foreach($this->messages as $key => $message){
+            //$this->messages[$key]->data = json_decode($message->data);
+        //}
+        //dd($this->messages);
+    }
+
+    public function markRead($key)
+    {
+        $this->messages[$key]->markAsRead();
+        //dd($message);
     }
 
     public function render()
