@@ -29,13 +29,13 @@ class NotificationSend extends Component
         //$sendEmail = auth()->user();
         //dd($sendEmail);
         //dd($this->user);
-        AppMailController
         Notification::send($sendEmail, new NotificationTest([
             "title" => $this->title,
             "asunto" => $this->subject,
             "url" => "/dashboard",
             "name" => $sendEmail->name,
-            "email" => $sendEmail->email
+            "email" => $sendEmail->email,
+            "message" => $this->message
         ]));
         return redirect('/email');
     }

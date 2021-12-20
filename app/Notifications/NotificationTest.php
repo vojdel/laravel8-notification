@@ -50,8 +50,7 @@ class NotificationTest extends Notification
             ->greeting($this->notificacion['asunto'])
             //->from(auth()->user()->email, auth()->user()->name)
             ->from('admin@admin.com')
-            ->line('The introduction to the notification.')
-            ->line('Thank you for using our application!')
+            ->line($this->notificacion['message'])
             ->action('Notification Action', url($this->notificacion['url']));
     }
 
@@ -68,7 +67,8 @@ class NotificationTest extends Notification
             "asunto" => $this->notificacion[ 'asunto' ],
             "url" => $this->notificacion[ 'url' ],
             "email" => $notifiable->email,
-            "name" => $this->notificacion['name']
+            "name" => $this->notificacion['name'],
+            "message" => $this->notificacion['message']
         ];
     }
 }
